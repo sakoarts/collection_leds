@@ -1,0 +1,7 @@
+To this folder 2 log files will be written
+python.log which outputs python errors
+gunicorn.log which outputs everything from warnings encountered by de WSGI server
+
+DO NOT delete this file or folder
+
+The webserver logs can be found in /var/log/nginx/error.log

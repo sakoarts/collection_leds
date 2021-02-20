@@ -1,0 +1,16 @@
+{
+  "n_leds": 216,
+  "exclude_picker": {
+    "exclude_leds": [],
+    "exclude_ends": true,
+    "exclude_ends_n": 2,
+    "exclude_segments": []
+  },
+  "data_pin": "D18",
+  "color_order": "RGB",
+  "segments": [
+    [0, 72],
+    [73, 143],
+    [144, 215]
+  ]
+}
