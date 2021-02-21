@@ -49,6 +49,7 @@ def collection_picker_web():
     return f'Collection {led} was chosen'
 
 
+# http://collection_led:5000/collection/collection-pixel?r=28&g=155&b=155&p=0
 @app.route('/collection/collection-pixel')
 def set_pixel_web():
     p = int(request.args.get('p'))
@@ -60,6 +61,7 @@ def set_pixel_web():
     return 'done'
 
 
+# http://collection_led:5000/collection/chase?r=28&g=155&b=155&speed=0.001&sled=0&eled=140
 @app.route('/collection/chase')
 def play_chase_web():
     leds = web_get_leds(request.args)
@@ -71,6 +73,7 @@ def play_chase_web():
     return 'done'
 
 
+# http://collection_led:5000/collection/rainbow?sled=0&eled=140
 @app.route('/collection/rainbow')
 def play_rainbow_web():
     leds = web_get_leds(request.args)
@@ -79,6 +82,7 @@ def play_rainbow_web():
     return 'done'
 
 
+# http://collection_led:5000/collection/fire?sled=0&eled=140&factor=0.75
 @app.route('/collection/fire')
 def play_fire_web():
     reduce = check_get_default(request.args.get('reduce'), 80)
@@ -89,12 +93,14 @@ def play_fire_web():
     return 'done'
 
 
+# http://collection_led:5000/collection/all-off
 @app.route('/collection/all-off')
 def all_off_web():
     interaction.set_all_leds()
     return 'All leds are turend off'
 
 
+# http://collection_led:5000/collection/leds?r=28&g=155&b=155&sled=0&eled=140&color=goldenrod
 @app.route('/collection/leds')
 def set_leds_web():
     leds = web_get_leds(request.args)
@@ -108,6 +114,7 @@ def set_leds_web():
     return 'done'
 
 
+# http://collection_led:5000/collection/hsv?online=true&on=true&brightness=100&hue=208&saturation=0.05882352963089943&value=1
 @app.route('/collection/hsv')
 def set_hsv_web():
     r, g, b, brightness, on = web_get_google_hsv_to_rgb(request.args)
@@ -121,6 +128,7 @@ def set_hsv_web():
     return 'done'
 
 
+# http://collection_led:5000/collection/christmas
 @app.route('/collection/christmas')
 def play_christmas_web():
     leds = web_get_leds(request.args)
@@ -129,6 +137,7 @@ def play_christmas_web():
     return 'done'
 
 
+# http://collection_led:5000/collection/twinkle?sled=0&eled=218&factor=1&reduce=200&r=28&g=155&b=155
 @app.route('/collection/twinkle')
 def play_twinkle_web():
     reduce = check_get_default(request.args.get('reduce'), 200)
