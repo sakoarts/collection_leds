@@ -127,12 +127,38 @@ def set_hsv_web():
 
     return 'done'
 
+# http://collection_led:5000/collection/color_walk
+@app.route('/collection/color_walk')
+def play_color_walk_web():
+    leds = web_get_leds(request.args)
+
+    idx = 0
+    colors = []
+    while True:
+        try:
+            colors.append((int(request.args.get(f'r{idx}')), int(request.args.get(f'g{idx}')), int(request.args.get(f'b{idx}'))))
+            idx += 1
+        except Exception as e:
+            break
+        
+    animations.color_walk(leds, colors)
+
+    return 'done'
 
 # http://collection_led:5000/collection/christmas
 @app.route('/collection/christmas')
 def play_christmas_web():
     leds = web_get_leds(request.args)
     animations.christmas_animation(leds, None)
+
+    return 'done'
+
+
+# http://collection_led:5000/collection/spring
+@app.route('/collection/spring')
+def play_spring_web():
+    leds = web_get_leds(request.args)
+    animations.spring_animation(leds, None)
 
     return 'done'
 

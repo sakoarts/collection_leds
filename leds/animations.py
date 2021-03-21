@@ -120,6 +120,14 @@ class LedAnimations:
     def christmas_animation(self, leds, colors=None, range_part_len=50):
         if not colors:
             colors = [(255, 255, 255), (255, 0, 0), (255, 0, 0)]
+        color_walk(leds, colors, range_part_len)
+
+    def spring_animation(self, leds, colors=None, range_part_len=50):
+        if not colors:
+            colors = [(201, 55, 212), (255, 251, 43), (93, 255, 43)]
+        color_walk(leds, colors, range_part_len)
+
+    def color_walk(self, leds, colors, range_part_len=50):
         circle_range = self.get_circle_color_range(colors, range_part_len)
         self.walk_animation(leds, circle_range)
 
