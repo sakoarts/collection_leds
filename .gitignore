@@ -2,3 +2,4 @@ venv/
 ledvenv/
 .idea/
 __pycache__/
+logs/python.log

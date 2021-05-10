@@ -195,3 +195,35 @@ class LedAnimations:
             self.pixels[p] = rgb_r
         self.pixels.show()
         time.sleep(delay)
+
+    @save_and_execute
+    @animation_thread.start_animation
+    @run_continuously
+    def season_animation(self, leds, factor=0.2, reduce=75, background=None, twinkels=None, nr_twinkels=5):
+        if not background:
+            background = [(75, 255, 0), (150, 255, 0)]
+        if not twinkels:
+            twinkels = [(255, 132, 0), (255, 0, 204)]
+        background_colors = self.get_circle_color_range(background, range_part_len=20)
+
+        delay = random.choice(range(50, 150)) / 400
+
+        for p in leds:
+            flicker = random.choice(range(reduce))
+            rgb = random.choice(background_colors)
+            rgb_r = tuple([int((x - flicker) * factor) if x - flicker >= 0 else 0 for x in rgb])
+            self.pixels[p] = rgb_r
+
+        twinkle_leds = random.sample(leds, nr_twinkels)
+
+        for p in twinkle_leds:
+            flicker = 0
+            factor = 1
+            rgb = random.choice(twinkels)
+            rgb_r = tuple([int((x - flicker) * factor) if x - flicker >= 0 else 0 for x in rgb])
+            self.pixels[p] = rgb_r
+
+
+
+        self.pixels.show()
+        time.sleep(delay)

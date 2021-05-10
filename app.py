@@ -158,7 +158,10 @@ def play_christmas_web():
 @app.route('/collection/spring')
 def play_spring_web():
     leds = web_get_leds(request.args)
-    animations.spring_animation(leds, None)
+    # animations.spring_animation(leds, None)
+    background = [(75, 255, 0), (150, 255, 0)]
+    twinkels = [(255, 77, 0), (255, 0, 204), (255, 255, 0)]
+    animations.season_animation(leds, background=background, twinkels=twinkels)
 
     return 'done'
 
