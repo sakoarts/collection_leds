@@ -107,7 +107,7 @@ def set_leds_web():
     r, g, b = web_get_rgb(request.args)
     color = check_get_default(request.args.get('color'), None, str)
     if color:
-        r, g, b = tuple([int(l * 255) for l in Color(color).rgb])
+        r, g, b = tuple(int(l * 255) for l in Color(color).rgb)
 
     interaction.set_some_leds(r, g, b, leds)
 
