@@ -65,7 +65,7 @@ class LedAnimations:
             self.collection_choise_leds(led)
             time.sleep(0.05 * x)
 
-        for x in range(5):
+        for _ in range(5):
             if last_animation_timestamp != get_timestamp():
                 return
             self.pixels.fill((0, 0, 0))
@@ -113,7 +113,7 @@ class LedAnimations:
         for i, c in enumerate(colors):
             circle_range += colors[i - 1].range_to(c, range_part_len)
 
-        circle_range = [tuple([int(l * 255) for l in c.rgb]) for c in circle_range]
+        circle_range = [tuple(int(l * 255) for l in c.rgb) for c in circle_range]
 
         return circle_range
 
@@ -176,8 +176,15 @@ class LedAnimations:
             if p >= len(leds) - 1:
                 p = len(leds) - 2
             flicker = random.choice(range(reduce))
-            rgb_low = tuple([int((x - flicker) * factor) if x - flicker >= 0 else 0 for x in rgb])
-            rgb_high = tuple([int((x - flicker/2) * factor) if x - flicker >= 0 else 0 for x in rgb])
+            rgb_low = tuple(
+                int((x - flicker) * factor) if x - flicker >= 0 else 0 for x in rgb
+            )
+
+            rgb_high = tuple(
+                int((x - flicker / 2) * factor) if x - flicker >= 0 else 0
+                for x in rgb
+            )
+
             self.pixels[p] = rgb_low
             self.pixels[p - 1] = self.pixels[p+1] = rgb_high
         self.pixels.show()
@@ -191,7 +198,10 @@ class LedAnimations:
 
         for p in leds:
             flicker = random.choice(range(reduce))
-            rgb_r = tuple([int((x - flicker) * factor) if x - flicker >= 0 else 0 for x in rgb])
+            rgb_r = tuple(
+                int((x - flicker) * factor) if x - flicker >= 0 else 0 for x in rgb
+            )
+
             self.pixels[p] = rgb_r
         self.pixels.show()
         time.sleep(delay)
@@ -220,7 +230,10 @@ class LedAnimations:
             flicker = 0
             factor = 1
             rgb = random.choice(twinkels)
-            rgb_r = tuple([int((x - flicker) * factor) if x - flicker >= 0 else 0 for x in rgb])
+            rgb_r = tuple(
+                int((x - flicker) * factor) if x - flicker >= 0 else 0 for x in rgb
+            )
+
             self.pixels[p] = rgb_r
 
 
